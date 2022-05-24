@@ -1,11 +1,12 @@
 <h4>... -Add more files if they’re needed.<br /></h4>
 <div>
     <p>
-project_name<br />
+
+<a href='https://github.com/I-SMAF/back-end-drf/tree/main/project_name'>project_name</a><br />
 ┃<br />
-┣┳ project_name (Put all the settings for the app here.)<br />
+┣┳ <a href='https://github.com/I-SMAF/back-end-drf/tree/main/project_name/project_name'>project_name</a> (Put all the settings for the app here.)<br />
 ┃┣ __init__.py<br />
-┃┣┳ settings<br />
+┃┣┳ <a href='https://github.com/I-SMAF/back-end-drf/tree/main/project_name/project_name/settings'>settings</a><br />
 ┃    ┣ <a href='https://github.com/I-SMAF/back-end-drf/blob/main/project_name/settings/__init__.py'>__init__.py</a><br />
 ┃    ┣ base.py<br />
 ┃    ┣ development.py<br />
