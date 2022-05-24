@@ -3,7 +3,8 @@ import importlib
 
 ENV_ROLE = os.getenv('ENV_ROLE', 'development')
 
-env_settings = importlib.import_module(f'back_end.settings.{ENV_ROLE}')
+# change project_name to yours
+env_settings = importlib.import_module(f'project_name.settings.{ENV_ROLE}') 
 
 variables = vars(env_settings)
 
