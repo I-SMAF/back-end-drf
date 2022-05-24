@@ -31,12 +31,8 @@
 ┃    ┣ urls.py<br />
 ┃    ┣┳ test<br />
 ┃      ...<br />
-┃    ┣┳ templates (Optional and not present if the project is API only.)<br />
-┃      ...<br />
-┃    ┣ api.py (Optional and not present if the project is API only.)<br />
+┃    ┣ api.py <br />
 ┃      ... <br />
-┃  ...<br />
-┣┳ templates (These general templates are loaded last in the application.)<br />
 ┃  ...<br />
 ┃<br />
 ┣┳ utils<br />
