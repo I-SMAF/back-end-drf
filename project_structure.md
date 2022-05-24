@@ -1,39 +1,45 @@
-project_name
-|
-|__ project_name (Put all the settings for the app here.)
-|    |__ __init__.py
-|    |__ settings
-|          |__ __init__.py
-|          |__ base.py
-|          |__ development.py
-|          |__ production.py
-|           ...
-|    |__ wsgi.py
-|    |__ asgi.py (optional)
-|    |__ urls.py
-|     ...
-|
-|__ api
-|  |__ __init__.py
-|   ...
-|  |__ urls.py (Use this file to route the apps located under the applications folder.)
-|
-|__ applications
-|   |__ __init__.py
-|   |__ app1
-|    ... |__ models.py (Split the folder and import models in __init__ if necessary.)
-|        |__ views.py
-|        |__ serializers.py
-|        |__ urls.py
-|        |__ test
-|        |    ...  
-|        |__ templates (Optional and not present if the project is API only.)
-|        |
-|        |__ api.py (Optional and not present if the project is API only.)
-|         ... (Add more files if they’re needed.)
-|
-|__ templates (These general templates are loaded last in the application.)
-|
-|__ utils
-|    ... 
- ...
+<h4>... -Add more files if they’re needed.<br /></h4>
+<div>
+    <p>
+project_name<br />
+┃<br />
+┣┳ project_name (Put all the settings for the app here.)<br />
+┃┣ __init__.py<br />
+┃┣┳ settings<br />
+┃    ┣ <a href='https://github.com/I-SMAF/back-end-drf/blob/main/project_name/settings/__init__.py'>__init__.py</a><br />
+┃    ┣ base.py<br />
+┃    ┣ development.py<br />
+┃    ┣ production.py<br />
+┃      ...<br />
+┃┣ wsgi.py<br />
+┃┣ asgi.py (optional)<br />
+┃┣ urls.py<br />
+┃  ...<br />
+┃<br />
+┣ api<br />
+┃┣ __init__.py<br />
+┃  ...<br />
+┃┗ urls.py (Use this file to route the apps located under the applications folder.)<br />
+┃<br />
+┣┳ applications<br />
+┃┣ __init__.py<br />
+┃┣┳ app1<br />
+┃    ┣ models.py (Split the folder and import models in __init__ if necessary.)<br />
+┃    ┣ views.py<br />
+┃    ┣ serializers.py<br />
+┃    ┣ urls.py<br />
+┃    ┣┳ test<br />
+┃      ...<br />
+┃    ┣┳ templates (Optional and not present if the project is API only.)<br />
+┃      ...<br />
+┃    ┣ api.py (Optional and not present if the project is API only.)<br />
+┃      ... <br />
+┃  ...<br />
+┣┳ templates (These general templates are loaded last in the application.)<br />
+┃  ...<br />
+┃<br />
+┣┳ utils<br />
+┃  ...<br />
+...<br />
+</p>
+</div>
