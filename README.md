@@ -1011,3 +1011,95 @@ __Руководство API__
 |PATCH|partial_update|||
 |DELETE|destroy|||
 |{prefix}/{lookup}/{methodname}/|GET, или как указано в аргументах `методов`|метод декоратор `@detail_route`|{basename}-{methodname}|
+    
+Как и в случае с `SimpleRouter`, закрывающие слеши путей URL можно удалить, установив значение `False` в настройке `trailing_slash` при инициализации роутера.
+``router = DefaultRouter(trailing_slash=False)``
+
+__Кастомные роутеры__
+Вам редко понадобится применять кастомный роутер, но он может быть полезен, если у вас есть особые требования к структуре URL вашего API. Это позволит вам инкапсулировать структуру URL для повтороного использования, т.е. вам не придется отдельно писать URL паттерны для каждого нового представления.
+Самый простой способ применения кастомного роутера это образовать подласс от одного из существующих классов роутера. Атрибут `.routes` используется для шаблонизирования URL паттернов, которые будут отображаться для каждого `viewset`. Атрибут `.routes` это список, который содержит именованные кортежи (`namedtuple`) `Route`.
+__Аргументы именованных кортежей Route:__
+`url`: Строка, которая представляет URL для маршрутизации. Может включать следующие форматирующие строки:
+`{prefix}` - префикс URL, который будет использоваться с набором путей.
+`{lookup}` - поле поиска, которое используется для сопоставления с единичным экземпляром.
+`{trailing_slash}` - либо '/' или пустая строка, в зависимости от аргумента `trailing_slash`.
+`mapping`: отображение имен методов HTTP для методов представления
+`name`: URL name, используемое в reverse вызовах. Может включать следующую форматирующую строку:
+`{basename}` - основа, которая используется с создающимися URL именами.
+`initkwargs`: Словарь любого дополнительного аргумена, который должен передаваться при инициализации представления. Заметьте, что аргумент `suffix` зарезервирован для определения типа `viewset` и используется при создании имени представления и навигационных цепочек.
+Кастомизация динамических путей
+Вы также можете кастомизировать маршрутизацию декораторов `@list_route` и `@detail_route`. Чтобы маршрутизировать их внесите именованные кортежи
+`DynamicListRoute` и/или `DynamicDetailRoute` в списке `.routes list..`
+Аргументы `DynamicListRoute` и `DynamicDetailRoute`:
+`url`: Строка, которая представляет URL для маршрутизации. Может включать те же форматирующие строки, как и `Route` и дополнительно принимает форматирующие строки `{methodname}` и `{methodnamehyphen}`.
+`name`: Имя URL, используемое в reverse вызовах. Может включать следующие форматирующие строки: `{basename}`, `{methodname}` и `{methodnamehyphen}`.
+`initkwargs`: Словарь любого дополнительного аргумена, который должен передаваться при инициализации представления.
+__Пример:__
+Слеюущий пример будет маршрутизировать только действия `list` и `retrieve` и не использует закрывающие слеши.
+```
+from rest_framework.routers import Route, DynamicDetailRoute, SimpleRouter
+
+class CustomReadOnlyRouter(SimpleRouter):
+    """
+    A router for read-only APIs, which doesn't use trailing slashes.
+    """
+    routes = [
+        Route(
+            url=r'^{prefix}$',
+            mapping={'get': 'list'},
+            name='{basename}-list',
+            initkwargs={'suffix': 'List'}
+        ),
+        Route(
+            url=r'^{prefix}/{lookup}$',
+            mapping={'get': 'retrieve'},
+            name='{basename}-detail',
+            initkwargs={'suffix': 'Detail'}
+        ),
+        DynamicDetailRoute(
+            url=r'^{prefix}/{lookup}/{methodnamehyphen}$',
+            name='{basename}-{methodnamehyphen}',
+            initkwargs={}
+        )
+    ]
+```
+Давайте посмотрим на пути, которые наш `CustomReadOnlyRouter` сгенерирует для простого `viewset`.
+___views.py__
+```
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    A viewset that provides the standard actions
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'username'
+
+    @detail_route()
+    def group_names(self, request, pk=None):
+        """
+        Returns a list of all the group names that the given
+        user belongs to.
+        """
+        user = self.get_object()
+        groups = user.groups.all()
+        return Response([group.name for group in groups])
+```
+___urls.py___
+```
+router = CustomReadOnlyRouter()
+router.register('users', UserViewSet)
+urlpatterns = router.urls
+```
+Будет сгенерирован следующий маппинг...
+
+|URL|HTTP Method|Action|URL Name|
+|---|-----------|------|--------|
+|/users|GET|list|user-list|
+|/users/{username}|GET|retrieve|user-detail|
+|/users/{username}/group-names|GET|group_names|user-group-names|
+
+Для другого примера настроек атрибута `.routes` см код источника класса `SimpleRouter`.
+
+__Продвинутые кастомные роутеры__
+Если вы хотите обеспечить полностью настраивомое поведение, то можете переписать `BaseRouter` и метод `get_urls(self)`. Метод должен инспетировать зарегистрированные `viewsets` и вернуть список URL паттернов. К зарегистрированным кортежам базовых имен, префиксов и `viewset` можно получить доступ через атрибут `self.registry`.
+Также вы можете переписать метод `get_default_base_name(self, viewset)` или же всегда явно прописывать аргумент `base_name` при регистрации `viewsets` в роутере.
