@@ -1,11 +1,13 @@
 # back-end-drf
 
 - [1.1/12 GIT(git ignore, main comands, rules)](https://github.com/I-SMAF/back-end-drf/edit/main/README.md#1112-gitgit-ignore-main-comands-rules)
-- [1.2/12 virtual environment(virtual variables)]
-- [2.1/12 Class (remember the python)]
-- [2.2/12 ORM(sqllite)]
-- [3.1/12 Internet]
-- []
+- [1.2/12 virtual environment(virtual variables)](https://github.com/I-SMAF/back-end-drf#1212-virtual-environmentvirtual-variables)
+- [2.1/12 Class (remember the python)](https://github.com/I-SMAF/back-end-drf#2112-class-remember-the-python)
+- [2.2/12 ORM(sqllite)](https://github.com/I-SMAF/back-end-drf#2212-ormsqllite)
+- [3.1/12 Internet](https://github.com/I-SMAF/back-end-drf#3112-internet)
+- [3.1/12 OS & General Knowledge](https://github.com/I-SMAF/back-end-drf#3112-os--general-knowledge)
+- [4/12 APIs](https://github.com/I-SMAF/back-end-drf#412-apis)
+- [5/12 Django Rest Framework](https://github.com/I-SMAF/back-end-drf#512-django-rest-framework)
 
 # Learning...
 
