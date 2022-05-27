@@ -280,3 +280,87 @@ INSTALLED_APPS = [
 ]
 ```
 Когда вы добавляете новые приложения в `INSTALLED_APPS`, обязательно запустите `manage.py migrate`, при необходимости сначала сделав миграцию для них с помощью `manage.py makemigrations`.
+
+
+
+## 6/12 Manager Django
+`class Manager`
+`Manager` - это интерфейс, через который для моделей Django предоставляются операции запросов к базе данных. По крайней мере, один `Manager` существует для каждой модели в приложении Django.
+
+Принцип работы классов `Manager` задокументирован в Создание запросов; этот документ специально касается параметров модели, которые настраивают поведение `Manager`.
+
+__Имена менеджеров__
+По умолчанию Django добавляет `Manager` с именем `objects` в каждый класс модели Django. Однако, если вы хотите использовать `objects` в качестве имени поля или если вы хотите использовать имя, отличное от `objects` для `Manager`, вы можете переименовать его для каждой модели. Чтобы переименовать `Manager` для данного класса, определите атрибут класса типа `models.Manager()` для этой модели. Например:
+```
+from django.db import models
+
+class Person(models.Model):
+    #...
+    people = models.Manager()
+```
+Используя этот пример модели, `Person.objects` сгенерирует исключение `AttributeError`, а `Person.people.all()` предоставит список всех объектов `Person`.
+__Изменение начального QuerySet менеджера__
+Базовый `QuerySet Manager` возвращает все объекты в системе. Например, используя эту модель:
+```
+from django.db import models
+
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=50)
+```
+…оператор `Book.objects.all()` вернет все книги в базе данных.
+
+Вы можете переопределить базовый `QuerySet Manager’а`, переопределив метод `Manager.get_queryset()`. `get_queryset()` должен вернуть `QuerySet` с нужными вам свойствами.
+
+Например, в следующей модели есть два `Manager` - один возвращает все объекты, а другой возвращает только книги Роальда Даля:
+```
+# First, define the Manager subclass.
+class DahlBookManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(author='Roald Dahl')
+
+# Then hook it into the Book model explicitly.
+class Book(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=50)
+
+    objects = models.Manager() # The default manager.
+    dahl_objects = DahlBookManager() # The Dahl-specific manager.
+```
+В этом примере модели `Book.objects.all()` вернет все книги в базе данных, а `Book.dahl_objects.all()` вернет только те, которые написаны Роальдом Далем.
+
+Поскольку `get_queryset()` возвращает объект `QuerySet`, вы можете использовать для него `filter()`, `exclude()` и все другие методы `QuerySet`. Итак, все эти утверждения законны:
+```
+Book.dahl_objects.all()
+Book.dahl_objects.filter(title='Matilda')
+Book.dahl_objects.count()
+```
+В этом примере также отмечен еще один интересный прием: использование нескольких менеджеров в одной модели. Вы можете прикрепить к модели столько экземпляров `Manager()`, сколько захотите. Это не повторяющийся способ определения общих «фильтров» для ваших моделей.
+
+Например:
+```
+class AuthorManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(role='A')
+
+class EditorManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(role='E')
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    role = models.CharField(max_length=1, choices=[('A', _('Author')), ('E', _('Editor'))])
+    people = models.Manager()
+    authors = AuthorManager()
+    editors = EditorManager()
+```
+Этот пример позволяет вам запрашивать `Person.authors.all()`, `Person.editors.all()` и `Person.people.all()`, что дает предсказуемые результаты.
+
+__Менеджеры по умолчанию__
+`Model._default_manager`
+Если вы используете настраиваемые объекты `Manager`, обратите внимание, что первые обнаруженные Django объекты `Manager` (в том порядке, в котором они определены в модели) имеют особый статус. Django интерпретирует первый менеджер, определенный в классе, как менеджер по умолчанию, и некоторые части Django (включая `dumpdata`) будут использовать этот менеджер исключительно для этой модели. В результате рекомендуется быть осторожным при выборе диспетчера по умолчанию, чтобы избежать ситуации, когда переопределение `get_queryset()` приведет к невозможности получить объекты, с которыми вы хотите работать.
+
+Вы можете указать собственный менеджер по умолчанию, используя `Meta.default_manager_name`.
+
+Если вы пишете код, который должен обрабатывать неизвестную модель, например, в стороннем приложении, реализующем общее представление, используйте этот менеджер (или `_base_manager`) вместо того, чтобы предполагать, что модель имеет менеджер объектов.
