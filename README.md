@@ -12,6 +12,9 @@
 - [5/12 Django Rest Framework](#512-django-rest-framework)
 - [6/12 Models Django](#612-models-django)
 - [7/12 Manager Django](#712-manager-django)
+- [8/12 Model Serializers](#812-model-serializers)
+- [9/12 View Django](#912-view-django)
+- [10/12 APIView](#1012-apiview)
 - [11/12 URL Manager](#1112-url-manager)
 - [12/12 Routers](#1212-routers )
 
@@ -386,33 +389,21 @@ __Менеджеры по умолчанию__
 Если вы пишете код, который должен обрабатывать неизвестную модель, например, в стороннем приложении, реализующем общее представление, используйте этот менеджер (или `_base_manager`) вместо того, чтобы предполагать, что модель имеет менеджер объектов.
 
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     
+## 8/12 Model Serializers     
+...
+
+
+
+## 9/12 View Django    
+...
+
+
+
+## 10/12 APIView      
+...
+
+
 
 ## 11/12 URL Manager
 
