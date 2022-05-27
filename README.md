@@ -1,7 +1,7 @@
 # back-end-drf
 
 - [1.1/12 GIT(git ignore, main comands, rules)](https://github.com/I-SMAF/back-end-drf#1112-gitgit-ignore-main-comands-rules)
-- [1.2/12 virtual environment(virtual variables)](https://github.com/I-SMAF/back-end-drf#1212-virtual-environmentvirtual-variables)
+- [1.2/12 Virtual Environment(virtual variables)](https://github.com/I-SMAF/back-end-drf#1212-virtual-environmentvirtual-variables)
 - [2.1/12 Class (remember the python)](https://github.com/I-SMAF/back-end-drf#2112-class-remember-the-python)
 - [2.2/12 ORM(sqllite)](https://github.com/I-SMAF/back-end-drf#2212-ormsqllite)
 - [3.1/12 Internet](https://github.com/I-SMAF/back-end-drf#3112-internet)
@@ -74,7 +74,7 @@ git push
 
 
 
-## 1.2/12 virtual environment(virtual variables)
+## 1.2/12 Virtual Environment(virtual variables)
 set(win)/export | variables
 ...
 
