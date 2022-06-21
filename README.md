@@ -964,9 +964,13 @@ class UserViewSet(ModelViewSet):
         ...
 ```
 Этот пример сгенерирует следующий URL паттерн:
+    
+    
 |URL pattern|Name|
 |-----------|----|
 |^users/{pk}/change-password/$|`user-change-password`|
+    
+    
 
 Если вы не хотите использовать стандартные имена для ваших кастомных действий, то можете использовать параметр `url_name` для настройки.
 Например, если вы хотите изменить имя вашего кастомного действия на `user-change-password`, то можете написать следующее:
@@ -983,9 +987,16 @@ class UserViewSet(ModelViewSet):
 ```
 Этот пример сгенерирует следующий URL паттерн:
     
+    
+    
+    
 |URL pattern|Name|
 |-----------|----|
 |^users/{pk}/set_password/$|`user-change-password`|
+    
+    
+    
+    
     
 Вы также можете использовать параметр `url_path` и `url_name` вместе, чтобы дополнительно контролировать генерирование URL для кастомных представлений.
 Для дополнительно информации смотри документацию viewset о создании .
@@ -994,6 +1005,9 @@ __Руководство API__
     
 `SimpleRouter`
 Этот роутер включает маршруты для стандартного набора действий `list`, `create`, `retrieve`, `update`, `partial_update` и `destroy`. `Viewset` также может выделить дополнительные методы для маршрутизации, использя декораторы `@detail_route` или `@list_route`
+    
+    
+    
     
 |URL Style|HTTP Method|Action|URL Name|
 |---------|-----------|------|--------|
@@ -1005,6 +1019,9 @@ __Руководство API__
 |PATCH|partial_update|||
 |DELETE|destroy|||
 |{prefix}/{lookup}/{methodname}/|GET, или как указано в аргументах `методов`|метод декоратор `@detail_route`|{basename}-{methodname}|
+    
+    
+    
     
 Как и в случае с `SimpleRouter`, закрывающие слеши путей URL можно удалить, установив значение `False` в настройке `trailing_slash` при инициализации роутера.
 ``router = DefaultRouter(trailing_slash=False)``
