@@ -991,6 +991,7 @@ class UserViewSet(ModelViewSet):
 Для дополнительно информации смотри документацию viewset о создании .
 
 __Руководство API__
+    
 `SimpleRouter`
 Этот роутер включает маршруты для стандартного набора действий `list`, `create`, `retrieve`, `update`, `partial_update` и `destroy`. `Viewset` также может выделить дополнительные методы для маршрутизации, использя декораторы `@detail_route` или `@list_route`
     
