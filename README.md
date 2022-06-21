@@ -982,6 +982,7 @@ class UserViewSet(ModelViewSet):
         ...
 ```
 Этот пример сгенерирует следующий URL паттерн:
+    
 |URL pattern|Name|
 |-----------|----|
 |^users/{pk}/set_password/$|`user-change-password`|
