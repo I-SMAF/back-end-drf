@@ -3,7 +3,7 @@
 - [GIT(git ignore, main comands, rules)](#gitgit-ignore-main-comands-rules)
 - [Virtual Environment(virtual variables)](#virtual-environmentvirtual-variables)
 - [Class (remember the python)](#class-remember-the-python)
-- [ORM (sqllite)](#ormsqllite)
+- [ORM (sqllite)](#orm-sqllite)
 - [Internet](#internet)
 - [OS & General Knowledge](#os--general-knowledge)
 - [APIs](#apis)
