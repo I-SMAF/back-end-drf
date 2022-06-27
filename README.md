@@ -3,7 +3,7 @@
 - [GIT(git ignore, main comands, rules)](#gitgit-ignore-main-comands-rules)
 - [Virtual Environment(virtual variables)](#virtual-environmentvirtual-variables)
 - [Class (remember the python)](#class-remember-the-python)
-- [ORM(sqllite)](#ormsqllite)
+- [ORM (sqllite)](#ormsqllite)
 - [Internet](#internet)
 - [OS & General Knowledge](#os--general-knowledge)
 - [APIs](#apis)
@@ -206,7 +206,7 @@ class B(A):  # в скобках указан класс-предок
         pass
 ```
 
-## ORM(sqllite)
+## ORM (sqllite)
 
 __Для подключения к SQLite нужно выполнить следующие шаги:__
 
