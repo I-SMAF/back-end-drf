@@ -8,9 +8,9 @@
 ┃┣ __init__.py<br />
 ┃┣┳ <a href='https://github.com/I-SMAF/back-end-drf/tree/main/project_name/project_name/settings'>settings</a><br />
 ┃    ┣ <a href='https://github.com/I-SMAF/back-end-drf/blob/main/project_name/project_name/settings/__init__.py'>__init__.py</a><br />
-┃    ┣ base.py<br />
-┃    ┣ development.py<br />
-┃    ┣ production.py<br />
+┃    ┣ <a href='https://github.com/I-SMAF/back-end-drf/blob/main/project_name/project_name/settings/base.py'>base.py</a><br />
+┃    ┣ <a href='https://github.com/I-SMAF/back-end-drf/blob/main/project_name/project_name/settings/development.py'>development.py</a><br />
+┃    ┣ <a href='https://github.com/I-SMAF/back-end-drf/blob/main/project_name/project_name/settings/production.py'>production.py</a><br />
 ┃      ...<br />
 ┃┣ wsgi.py<br />
 ┃┣ asgi.py (optional)<br />
