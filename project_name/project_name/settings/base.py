@@ -19,8 +19,8 @@ USE_L10N = True
 LANGUAGE_CODE = 'ru-ru'
 
 INSTALLED_APPS = [
-    # other apps
-    # ...
+    # other apps like:
+    # applications.app_name
     'corsheaders',
     'rest_framework',
     'django.contrib.auth',
