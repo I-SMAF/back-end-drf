@@ -5,7 +5,7 @@
 <a href='https://github.com/I-SMAF/back-end-drf/tree/main/project_name'>project_name</a><br />
 ┃<br />
 ┣┳ <a href='https://github.com/I-SMAF/back-end-drf/tree/main/project_name/project_name'>project_name</a> (Put all the settings for the app here.)<br />
-┃┣ __init__.py<br />
+┃┣ <a href='https://github.com/I-SMAF/back-end-drf/tree/main/project_name/project_name/__init__.py'>__init__.py</a><br />
 ┃┣┳ <a href='https://github.com/I-SMAF/back-end-drf/tree/main/project_name/project_name/settings'>settings</a><br />
 ┃    ┣ <a href='https://github.com/I-SMAF/back-end-drf/blob/main/project_name/project_name/settings/__init__.py'>__init__.py</a><br />
 ┃    ┣ <a href='https://github.com/I-SMAF/back-end-drf/blob/main/project_name/project_name/settings/base.py'>base.py</a><br />
