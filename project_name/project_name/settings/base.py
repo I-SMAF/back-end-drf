@@ -20,7 +20,9 @@ LANGUAGE_CODE = 'ru-ru'
 
 INSTALLED_APPS = [
     # other apps like:
-    # applications.app_name
+    # 'applications.app_name',
+    # or packages like:
+    # 'package_name',
     'corsheaders',
     'rest_framework',
     'django.contrib.auth',
