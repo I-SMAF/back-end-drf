@@ -1839,7 +1839,8 @@ URL для кастомных представлений. Для дополни�
 
 __Руководство API__
 
-`SimpleRouter`
+#### `SimpleRouter`
+
 Этот роутер включает маршруты для стандартного набора действий `list`, `create`, `retrieve`, `update`, `partial_update`
 и `destroy`. `Viewset` также может выделить дополнительные методы для маршрутизации, использя декораторы `@detail_route`
 или `@list_route`
@@ -1847,12 +1848,12 @@ __Руководство API__
 |URL Style|HTTP Method|Action|URL Name|
 |---------|-----------|------|--------|
 |{prefix}/|GET|list|{basename}-list|
-|POST|create|||
+||POST|create|||
 |{prefix}/{lookup}/|GET, или как указано в аргументах `методов`|метод декоратор `@list_route`|{basename}-{methodname}|
 |{prefix}/{lookup}/{methodname}/|GET|retrieve|{basename}-detail|
-|PUT|update|||
-|PATCH|partial_update|||
-|DELETE|destroy|||
+||PUT|update|||
+||PATCH|partial_update|||
+||DELETE|destroy|||
 |{prefix}/{lookup}/{methodname}/|GET, или как указано в аргументах `методов`|метод декоратор `@detail_route`|{basename}-{methodname}|
 
 Как и в случае с `SimpleRouter`, закрывающие слеши путей URL можно удалить, установив значение `False` в
